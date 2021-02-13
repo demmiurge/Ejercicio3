@@ -8,8 +8,24 @@ namespace Ejercicio3
 {
     class Program
     {
-        static void Main(string[] args)
+        private Random rnd = new Random();
+        private List<Character> llistat = new List<Character>();
+        public void Main()
         {
+
+        }
+
+        private void addPersonatge()
+        {
+
+        }
+
+        private bool isPersonatge(string Nom)
+        {
+            for(int i = 0; i < llistat.Count(); i++)
+            {
+                
+            }   
         }
     }
 }
