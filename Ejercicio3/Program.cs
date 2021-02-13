@@ -63,10 +63,33 @@ namespace Ejercicio3
                     
              
             }
+
+            return
             
-            return 
+            
+        }
+
+
+        private Character getVictima(Character Atacant)
+        {
+            int vidaMin=5, posicio=0;
             
             
+            for (int i = 0; i < llistat.Count(); i++)
+            {
+
+                if (llistat[i].getVida()<vidaMin && Atacant.getNom()!= llistat[i].getNom())
+                {
+                    vidaMin = llistat[i].getVida();
+                    posicio = i;
+                }
+
+
+                
+
+            }
+            return llistat[posicio];
+
         }
     }
 }
