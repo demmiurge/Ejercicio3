@@ -24,8 +24,49 @@ namespace Ejercicio3
         {
             for(int i = 0; i < llistat.Count(); i++)
             {
+                if (llistat[i].getNom() == Nom) return true;
                 
-            }   
+            }
+            return false;
+        }
+        private void mostrarllistat ()
+        {
+            for (int i = 0; i < llistat.Count(); i++)
+            {
+                llistat[i].mostrar();
+            }              
+        }
+        private Character getAtacant()
+            //?????
+        {
+            int maxDau=0, dau, posicio;
+            
+            List<int> llistaPosicions = new List<int>();
+
+
+
+            for (int i = 0; i < llistat.Count(); i++)
+            {
+             dau = rnd.Next(1, 7);
+             if (dau>maxDau)
+             {
+                    maxDau = dau;
+                    llistaPosicions.Clear();
+                    llistaPosicions.Add(i);
+                    
+                }
+             else if (dau == maxDau)
+             {
+                    llistaPosicions.Add(i);
+             }
+                
+                    
+             
+            }
+            
+            return 
+            
+            
         }
     }
 }
