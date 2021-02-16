@@ -16,21 +16,20 @@ namespace Ejercicio3
         private double ProbabilidadRepresalia;
         public Character(string Nom, int DanyAtac)
         {
-            Console.WriteLine("Name your character: ");
-            Nom = Console.ReadLine();
-            Console.WriteLine("What damage will your character deliver?");
-            DanyAtac = Convert.ToInt32(Console.ReadLine());
-            Escudo = false;
+            this.Nom = Nom;
+            this.DanyAtac = DanyAtac;
+            Vida = MAX_VIDA;
+            Escudo = true;
         }
 
         public Character(string Nom, int DanyAtac, double ProbabilidadRepresalia)
         {
-            Console.WriteLine("Name your character: ");
-            Nom = Console.ReadLine();
-            Console.WriteLine("What damage will your character deliver?");
-            DanyAtac = Convert.ToInt32(Console.ReadLine());
-            //random probabilidad
-            Escudo = true;
+
+            this.Nom = Nom;
+            this.DanyAtac = DanyAtac;
+            Vida = MAX_VIDA;
+            this.ProbabilidadRepresalia = ProbabilidadRepresalia;
+            Escudo = false;
         }
 
         public string getNom()
@@ -60,7 +59,7 @@ namespace Ejercicio3
             }
         }
 
-        public double getProbabilidad()
+        public double getProbabilitatRepresalia()
         {
             return ProbabilidadRepresalia;
         }
@@ -74,23 +73,32 @@ namespace Ejercicio3
         public void esAtacat(Character Atacant)
         {
             Random rnd = new Random();
-            if(Escudo == true)
+            
+            if(getEscudo())
             {
                 updateVida(Atacant.getDany()-1);
+                Console.WriteLine();
+                Console.Write(getNom() + " rep dany de " + Atacant.getDany());
+                Console.WriteLine(", però té un escut i per això la seva vida és " + getVida() + ".\n");
             }
             else
             {
-                Vida -= DanyAtac;
+                updateVida(Atacant.getDany());
+                Console.WriteLine();
+                Console.WriteLine(getNom() + " rep dany de " + Atacant.getDany() + ", la seva vida és " + getVida() + ".\n");
                 double numb = rnd.NextDouble();
                 if(numb < ProbabilidadRepresalia)
                 {
                     Atacant.updateVida(1);
+                    Console.WriteLine();
+                    Console.WriteLine("Generem el número " + numb + "->" + Atacant.getNom() + "rep una represàlia i la seva vida és " + getVida() + ".\n");
                 }
             }
         }
 
         public void mostrar()
         {
+            Console.WriteLine();
             Console.Write("Nom: " + getNom() + " ");
             Console.Write("Vida: "+ getVida() + " ");
             Console.Write("Dany: "+ getDany() + " ");
@@ -100,7 +108,7 @@ namespace Ejercicio3
             }
             else
             {
-                Console.Write("Sense escut, amb probabilitat de represàlia "+ getProbabilidad() * 100 + "%");
+                Console.Write("Sense escut, amb probabilitat de represàlia "+ getProbabilitatRepresalia() * 100 + "%");
             }
             
            
